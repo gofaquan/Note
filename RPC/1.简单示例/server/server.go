@@ -27,6 +27,10 @@ func (s *HelloSvc) Hello(request string, response *string) error {
 }
 
 func main() {
+	// 把我们的对象注册成一个rpc的 receiver
+	// 其中rpc.Register函数调用会将对象类型中所有满足RPC规则的对象方法注册为RPC函数，
+	// 所有注册的方法会放在“HelloService”服务空间之下
+
 	// 把rpc对外暴露的对象注册到rpc框架内部
 	rpc.RegisterName("HelloSvc", &HelloSvc{})
 
