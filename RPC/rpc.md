@@ -212,7 +212,7 @@ func main() {
 // ServeConn blocks, serving the connection until the client hangs up.
 // The caller typically invokes ServeConn in a go statement.
 // ServeConn uses the gob wire format (see package gob) on the
-// connection. To use an alternate codec, use ServeCodec.
+// connection. To use an alternate gob编码, use ServeCodec.
 // See NewClient's comment for information about concurrent access.
 func (server *Server) ServeConn(conn io.ReadWriteCloser) {
 	buf := bufio.NewWriter(conn)
