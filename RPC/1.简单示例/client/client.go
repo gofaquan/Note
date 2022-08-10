@@ -20,6 +20,7 @@ func main() {
 	// 执行RPC方法
 	var response string
 	request := "我是请求消息"
+
 	client.Call("HelloSvc.Hello", request, &response)
 
 	// 打印调用响应
