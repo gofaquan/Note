@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+// 添加注释
+package hello;
+option go_package = "github.com/gofaquan/pb";
+
+// 这里是应用其他的proto文件, 后面会讲 ipmort用法
+import "google/protobuf/any.proto";
+
+// protoc -I=. -I=/home/gofaquan/Downloads/include  --go_out=.  --go_opt=module="github.com/gofaquan/pb"  hello.proto
+
+message String {
+  string value = 1;
+}
+
+enum VENDOR {
+  ALI_YUN = 0;
+  TX_YUN = 1;
+  AWS = 2;
+}
+
+message Host {
+  string name = 1;
+  string ip = 2;
+  // 有一个Tags字段
+  map<string, string> tags = 3;
+}
+
+message HostSet {
+  int64 total = 1;
+  // 定义一个Host数组
+  repeated Host items = 2;
+}
+
+message ProtobufEventHeader {
+  string id = 1;
+  map<string, string> headers = 2;
+}
+
+message JSONEventHeader {
+  string id = 1;
+  bytes headers = 2;
+}
+
+message Event {
+  oneof header {
+    ProtobufEventHeader protobuf = 1;
+    JSONEventHeader json = 2;
+  }
+}
+
+message ErrorStatus {
+  string message = 1;
+  repeated google.protobuf.Any details = 2;
+}
+
+message Outer {// Level 0
+  message MiddleAA {// Level 1
+    message Inner {// Level 2
+      int64 ival = 1;
+      bool  booly = 2;
+    }
+  }
+  message MiddleBB {// Level 1
+    message Inner {// Level 2
+      int32 ival = 1;
+      bool  booly = 2;
+    }
+  }
+
+  MiddleAA middleA = 1;
+  MiddleBB middleB = 2;
+}
