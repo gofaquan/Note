@@ -40,7 +40,7 @@ func main() {
 	// 把rpc对外暴露的对象注册到rpc框架内部
 	rpc.RegisterName(service.SERVICE_NAME, &HelloService{})
 
-	// 通过jsonrpc这个Path 来处理所有的请求
+	// 通过 jsonrpc 这个Path 来处理所有的请求
 	http.HandleFunc("/jsonrpc", func(w http.ResponseWriter, r *http.Request) {
 		rpc.ServeCodec(jsonrpc.NewServerCodec(NewRPCReadWriteCloser(w, r)))
 	})
@@ -48,3 +48,9 @@ func main() {
 	// 通过HTTP协议接收rpc请求
 	http.ListenAndServe(":8080", nil)
 }
+
+// POST localhost:8080/jsonrpc
+//{
+//    "method": "HelloService.Calc",
+//    "params": [{"a":1, "b": 2}]
+//}

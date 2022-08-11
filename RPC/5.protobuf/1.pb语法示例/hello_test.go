@@ -3,6 +3,7 @@ package pb_test
 import (
 	"fmt"
 	"github.com/gofaquan/pb"
+
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/protobuf/proto"
 	"testing"
