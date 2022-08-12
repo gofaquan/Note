@@ -1,7 +1,7 @@
 # Hello world Grpc
 
 ```sh
-> cd 6.GRPC/1.simple/server
+> cd 6.GRPC/2.流式通信stream/server
 # 生成 serivce pb编译文件
 > protoc -I=. --go_out=. --go_opt=module="github.com/gofaquan/server" pb/hello.proto
 
