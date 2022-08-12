@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package hello;
+option go_package="github.com/gofaquan/server/pb";
+
+// 定义RPC
+service HelloService {
+    rpc Hello(Request) returns(Response);
+}
+
+message Request {
+    string value = 1;
+}
+
+message Response {
+    string value = 1;
+}
